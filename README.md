@@ -1,2 +1,2 @@
 # Proyecto_Prueba
-mi primer proyecto colaborativo
+nuestro primer trabajo en equipogit add 
