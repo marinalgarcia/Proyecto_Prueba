@@ -2,7 +2,9 @@ from django.shortcuts import get_object_or_404, render
 from django.views import View
 from ejemplo.forms import PersonaForm
 from ejemplo.models import Persona
-from ejemplo.forms import PersonaForm
+from ejemplo.forms import PersonaForm, Buscar
+
+
 
 # Create your views here.
 class ListarPersonas(View):
@@ -49,3 +51,23 @@ class ActualizarPersonas(View):
             form = self.form_class(initial=self.initial)
     
         return render(request, self.success_template)
+    
+class BuscarCiente(View):
+
+    form_class = Buscar
+    template_name = 'ejemplo/Buscar.html'
+    initial = {"nombre":""}
+
+    def get(self, request):              
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form':form})
+
+    def post(self, request):               
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data.get("nombre")
+            lista_Clientes = Persona.objects.filter(nombre__icontains=nombre).all() 
+            form = self.form_class(initial=self.initial)
+            return render(request, self.template_name, {'form':form, 
+                                                        'lista_Clientes':lista_Clientes})
+        return render(request, self.template_name, {"form": form})

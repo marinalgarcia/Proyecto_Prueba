@@ -9,3 +9,6 @@ class PersonaForm(forms.ModelForm):
     class Meta:
         model = Persona
         fields = ['nombre', 'apellido', 'fecha_de_nacimiento']
+        
+class Buscar(forms.Form):
+      nombre = forms.CharField(max_length=100)
