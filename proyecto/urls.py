@@ -24,5 +24,5 @@ urlpatterns = [
     path('personas/actualizar',ActualizarPersonas.as_view()),
     path('personas/actualizar/<int:pk>',ActualizarPersonas.as_view()),
     path('personas/Buscar_Nombre', BuscarCliente.as_view()),
-    path('personas/Buscar_Apellido',BuscarClienteApellido.as_view())
+    path('personas/Buscar_Apellido',BuscarClienteApellido.as_view()),
 ]
