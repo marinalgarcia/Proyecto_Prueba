@@ -1,9 +1,9 @@
 {% extends 'ejemplo/base.html' %}
-{% block titulo%} Buscar Cliente por Nombre {% endblock %}
+{% block titulo%} Buscar Cliente por Apellido {% endblock %}
 {% block contenido %}
 
     
-      <form action="/personas/Buscar_Nombre" method="post">
+      <form action="/personas/Buscar_Apellido" method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Submit">

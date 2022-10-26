@@ -12,3 +12,7 @@ class PersonaForm(forms.ModelForm):
         
 class Buscar(forms.Form):
       nombre = forms.CharField(max_length=100)
+      
+
+class Buscar_Apellido(forms.Form):
+      apellido = forms.CharField(max_length=100)

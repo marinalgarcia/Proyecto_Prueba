@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404, render
 from django.views import View
-from ejemplo.forms import PersonaForm
+from ejemplo.forms import Buscar_Apellido, PersonaForm
 from ejemplo.models import Persona
-from ejemplo.forms import PersonaForm, Buscar
+from ejemplo.forms import PersonaForm, Buscar, Buscar_Apellido
 
 
 
@@ -52,7 +52,7 @@ class ActualizarPersonas(View):
     
         return render(request, self.success_template)
     
-class BuscarCiente(View):
+class BuscarCliente(View):
 
     form_class = Buscar
     template_name = 'ejemplo/Buscar.html'
@@ -66,7 +66,27 @@ class BuscarCiente(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             nombre = form.cleaned_data.get("nombre")
-            lista_Clientes = Persona.objects.filter(nombre__icontains=nombre).all() 
+            lista_Clientes = Persona.objects.filter(nombre__contains=nombre).all() 
+            form = self.form_class(initial=self.initial)
+            return render(request, self.template_name, {'form':form, 
+                                                        'lista_Clientes':lista_Clientes})
+        return render(request, self.template_name, {"form": form})
+    
+class BuscarClienteApellido(View):
+
+    form_class = Buscar_Apellido
+    template_name = 'ejemplo/Buscar_Apellido.html'
+    initial = {"apellido":""}
+
+    def get(self, request):              
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form':form})
+
+    def post(self, request):               
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            apellido = form.cleaned_data.get("apellido")
+            lista_Clientes = Persona.objects.filter(apellido__contains=apellido).all() 
             form = self.form_class(initial=self.initial)
             return render(request, self.template_name, {'form':form, 
                                                         'lista_Clientes':lista_Clientes})
