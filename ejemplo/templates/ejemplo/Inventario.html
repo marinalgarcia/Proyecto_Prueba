@@ -1,0 +1,30 @@
+{% extends 'ejemplo/base.html' %}
+
+{% block titulo%} Productos en Stock {% endblock %}
+
+{% block contenido %}
+    
+
+    {% for Inventario in Lista_Productos %}
+        <ul>
+            <li> Producto: {{ Inventario.Producto }}, Cantidad: {{ Inventario.Cantidad }} </li>
+        </ul>
+    {% endfor %}
+    
+{% endblock %}
+
+{% extends 'ejemplo/base.html' %}
+{% block contenido %}
+{% for Inventario in Lista_Productos %}
+<ul>
+    <li> Producto: {{ Inventario.Producto }}, Cantidad: {{ Inventario.Cantidad}}
+
+        <a href='Modificar/{{ Inventario.Producto }}'>Actualizar</a>
+    </li>
+</ul>
+{% endfor %}
+{%endblock %}
+
+{% block titulo%}
+Lista de todos mis Productos
+{% endblock %}

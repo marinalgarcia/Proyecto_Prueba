@@ -1,5 +1,6 @@
 from django import forms
 from ejemplo.models import Persona
+from ejemplo.models import Inventario
 
 class PersonaForm(forms.ModelForm):
 
@@ -16,3 +17,12 @@ class Buscar(forms.Form):
 
 class Buscar_Apellido(forms.Form):
       apellido = forms.CharField(max_length=100)
+
+
+class BuscarProd(forms.Form):
+  Producto = forms.CharField(max_length=200)
+
+class InventarioForm(forms.ModelForm):
+  class Meta:
+    model = Inventario
+    fields = ['Producto','Cantidad']

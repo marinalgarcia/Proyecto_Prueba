@@ -10,5 +10,13 @@ class Persona(models.Model):
     def __str__(self):
         return f" ID: {self.id} Nombre:{self.nombre}, Apellido:{self.apellido}, Fecha Nacimiento: {self.fecha_de_nacimiento}"
 
+from django.db import models
+
+class Inventario (models.Model):
+    Producto = models.CharField(max_length=200)
+    Cantidad = models.IntegerField()
+
+    def _str_(self):
+        return f"{self. Producto }, {self. Cantidad }, {self.id}"
 
     
