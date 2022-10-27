@@ -20,7 +20,7 @@ class Buscar_Apellido(forms.Form):
 
 
 class BuscarProd(forms.Form):
-  Producto = forms.CharField(max_length=200)
+      Producto = forms.CharField(max_length=200)
 
 class InventarioForm(forms.ModelForm):
   class Meta:

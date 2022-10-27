@@ -6,8 +6,8 @@ from ejemplo.forms import PersonaForm, Buscar, Buscar_Apellido
 from django.shortcuts import render
 from ejemplo.models import Inventario
 #from ejemplo.models import Familiar
-from ejemplo.forms import BuscarProd, InventarioForm 
-
+from ejemplo.forms import BuscarProd
+from ejemplo.forms import InventarioForm
 
 
 
@@ -64,7 +64,7 @@ class BuscarCliente(View):
     initial = {"nombre":""}
 
     def get(self, request):              
-        form = self.form_class(initial=self.initial)git
+        form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form':form})
 
     def post(self, request):               
@@ -97,14 +97,18 @@ class BuscarClienteApellido(View):
                                                         'lista_Clientes':lista_Clientes})
         return render(request, self.template_name, {"form": form})
 
-    def Mostrar_Inventario (request):
+class Mostrar_Inventario(View):
+    template_name = "ejemplo/Inventario.html"
+
+    def get(self,request):
         Lista_Productos = Inventario.objects.all()
-        return render(request, "ejemplo/Inventario.html", {"Lista_Productos": Lista_Productos })
+        return render (request, self.template_name, {"Lista_Productos": Lista_Productos })
+
 
 class AltaProducto (View):
 
     form_class = InventarioForm
-    template_name = 'ejemplo/alta_familiar.html'
+    template_name = 'ejemplo/Alta_Producto.html'
     initial = {"Producto":"", "Cantidad":""}
 
     def get(self, request):
@@ -124,8 +128,9 @@ class AltaProducto (View):
 
 
 class ActualizarProducto (View):
-    form_class = InventarioForm
-    template_name = 'ejemplo/ Modificar_inventario.html'
+    template_name = "ejemplo/Modificar_inventario.html"
+    success_template = "ejemplo/exito.html"
+    form_class = BuscarProd
     initial = {"Producto":"", "Cantidad":""}
   
   
@@ -140,10 +145,7 @@ class ActualizarProducto (View):
        form = self.form_class(request.POST ,instance= Producto)
        if form.is_valid():
             form.save()
-            msg_exito = f"se actualizó con éxito el Producto {form.cleaned_data.get(' Producto ')}"
             form = self.form_class(initial=self.initial)
-            return render(request, self.template_name, {'form':form, 
-                                                      ' Producto ': Producto,
-                                                      'msg_exito': msg_exito})
-      
-            return render(request, self.template_name, {"form": form})
+
+       return render(request, self.success_template)
+
