@@ -19,6 +19,7 @@ Objetivos de la entrega:
 - Podran acceder por medio de personas/Buscar_Nombre
 - Podran acceder a un listado de personas por medio de: /personas
 
+## Comentarios realizados durante el proyecto ##
 nuestro primer trabajo en equipo 
 
 Las Herencias ya están realizadas
