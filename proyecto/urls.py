@@ -28,7 +28,7 @@ urlpatterns = [
     path('personas/Buscar_Nombre', BuscarCliente.as_view()),
     path('personas/Buscar_Apellido',BuscarClienteApellido.as_view()),
     path('Inventario/', Mostrar_Inventario.as_view()), 
-    path('Inventario/alta_producto', AltaProducto.as_view()),    
+    path('Inventario/alta_producto', AltaProducto.as_view()),  
     path('Inventario/Modificar/<int:Producto>', ActualizarProducto.as_view()),
     path('proveedores/alta', AltaProveedores.as_view()),
     path('proveedores/', ListarProveedores.as_view()),

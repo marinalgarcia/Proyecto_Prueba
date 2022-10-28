@@ -127,8 +127,8 @@ class AltaProducto (View):
 
 class ActualizarProducto (View):
     template_name = "ejemplo/Modificar_inventario.html"
-    success_template = "ejemplo/exito.html"
-    form_class = BuscarProd
+    #success_template = "ejemplo/exito.html"
+    form_class = InventarioForm
     initial = {"Producto":"", "Cantidad":""}
   
   
@@ -143,9 +143,15 @@ class ActualizarProducto (View):
        form = self.form_class(request.POST ,instance= Producto)
        if form.is_valid():
             form.save()
+            msg_exito = f"se actualizó con éxito el Producto {form.cleaned_data.get('Producto')}"
             form = self.form_class(initial=self.initial)
+            return render(request, self.template_name, {'form':form, 
+                                                      'Producto': Producto,
+                                                      'msg_exito': msg_exito})
+      
+       return render(request, self.template_name, {"form": form})
 
-       return render(request, self.success_template)
+      
 
 class AltaProveedores (View):
     template_name = "ejemplo/proveedores_alta.html"

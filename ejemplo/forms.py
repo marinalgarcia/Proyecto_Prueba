@@ -22,9 +22,9 @@ class BuscarProd(forms.Form):
       Producto = forms.CharField(max_length=200)
 
 class InventarioForm(forms.ModelForm):
-  class Meta:
-    model = Inventario
-    fields = ['Producto','Cantidad']
+      class Meta:
+            model = Inventario
+            fields = ['Producto','Cantidad']
 
 class ProveedoresForm(forms.ModelForm):
   class Meta:
