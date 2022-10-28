@@ -12,7 +12,8 @@
 3. Generamos formularios para insertar datos a todas las clases de models:
 - Definimos los forms en forms.py.
 - Una de las urls para poder probar es: Inventario/alta_producto
-- Otra url es personas/cargar 
+- Otra url es personas/cargar
+- Para el alta de proveedores deberan utilizar la url: proveedores/alta
 
 4. Un formulario para buscar algo en la Base de datos: Creamos el form para poder buscar por nombre las personas que ya se encuentra cargadas
 - Podran acceder por medio de personas/Buscar_Nombre
