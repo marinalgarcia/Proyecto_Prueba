@@ -1,5 +1,4 @@
-# Proyecto_Prueba
-Objetivos de la entrega:
+## Objetivos de la entrega: ##
 
 1. Herencia de HTML: generamos el archivo base.html para utilizarlo como template base. Usamos la herencia en varios archivos, entre ellos:
 - carga_de_personas.html.
