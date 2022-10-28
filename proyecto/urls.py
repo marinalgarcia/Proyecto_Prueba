@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from ejemplo.views import (ActualizarPersonas, CargarPersonas, ListarPersonas, BuscarCliente,BuscarClienteApellido, 
-                            Mostrar_Inventario, AltaProducto,  ActualizarProducto)
+                            Mostrar_Inventario, AltaProducto,  ActualizarProducto, AltaProveedores, ListarProveedores)
 
 
 urlpatterns = [
@@ -30,4 +30,6 @@ urlpatterns = [
     path('Inventario/', Mostrar_Inventario.as_view()), 
     path('Inventario/alta_producto', AltaProducto.as_view()),    
     path('Inventario/Modificar/<int:Producto>', ActualizarProducto.as_view()),
+    path('proveedores/alta', AltaProveedores.as_view()),
+    path('proveedores/', ListarProveedores.as_view()),
 ]

@@ -1,11 +1,10 @@
 from django import forms
-from ejemplo.models import Persona
-from ejemplo.models import Inventario
+from ejemplo.models import Persona, Proveedores, Inventario
 
 class PersonaForm(forms.ModelForm):
 
-    fecha_nacimiento = forms.DateField(label="fecha de nacimiento", input_formats=["%d/%m/%Y"],
-    widget=forms.TextInput(attrs={'placeholder':'30/12/1995'}))
+    #fecha_nacimiento = forms.DateField(label="fecha de nacimiento", input_formats=["%d/%m/%Y"],
+    #widget=forms.TextInput(attrs={'placeholder':'30/12/1995'}))
 
     class Meta:
         model = Persona
@@ -26,3 +25,8 @@ class InventarioForm(forms.ModelForm):
   class Meta:
     model = Inventario
     fields = ['Producto','Cantidad']
+
+class ProveedoresForm(forms.ModelForm):
+  class Meta:
+    model = Proveedores
+    fields = ['empresa', 'direccion', 'fecha_de_alta']

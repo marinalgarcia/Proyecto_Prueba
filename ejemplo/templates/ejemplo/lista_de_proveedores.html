@@ -1,0 +1,13 @@
+{% extends 'ejemplo/base.html' %}
+{% block titulo%} Inventario de Proveedores {% endblock %}
+{% block contenido %}
+
+    <h2> Listado:</h2> 
+
+    <ul>
+    {% for proveedores in proveedores%}
+    <li>{{proveedores}}</li>
+    {% endfor %}
+
+</ul>
+{% endblock %}

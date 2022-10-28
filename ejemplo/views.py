@@ -1,14 +1,12 @@
 from django.shortcuts import get_object_or_404, render
 from django.views import View
 from ejemplo.forms import Buscar_Apellido, PersonaForm
-from ejemplo.models import Persona
+from ejemplo.models import Persona, Proveedores
 from ejemplo.forms import PersonaForm, Buscar, Buscar_Apellido
 from django.shortcuts import render
 from ejemplo.models import Inventario
 #from ejemplo.models import Familiar
-from ejemplo.forms import BuscarProd
-from ejemplo.forms import InventarioForm
-
+from ejemplo.forms import BuscarProd, InventarioForm, ProveedoresForm
 
 
 # Create your views here.
@@ -149,3 +147,30 @@ class ActualizarProducto (View):
 
        return render(request, self.success_template)
 
+class AltaProveedores (View):
+    template_name = "ejemplo/proveedores_alta.html"
+    success_template = "ejemplo/exito.html"
+    form_class = ProveedoresForm
+    initial = {"empresa":"", "direccion":"", "fecha_de_alta":""}
+  
+    def get(self,request):
+        form = self.form_class(initial=self.initial)
+        return render (request, self.template_name, {"form": form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            msg_exito = f"se cargo con éxito el provvedor {form.cleaned_data.get('empresa')}"
+            form = self.form_class(initial=self.initial)
+            return render(request, self.template_name, {'form':form, 
+                                                        'msg_exito': msg_exito})
+        
+        return render(request, self.template_name, {"form": form})
+
+class ListarProveedores(View):
+    template_name = "ejemplo/lista_de_proveedores.html"
+
+    def get(self,request):
+        proveedores = Proveedores.objects.all()
+        return render (request, self.template_name, {"proveedores": proveedores})
